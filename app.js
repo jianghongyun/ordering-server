@@ -5,6 +5,7 @@
 
 //加载express模块
 const express = require('express');
+const path = require('path');
 //加载body-Parser中间件
 const bodyParser = require('body-parser');
 const app = new express();
@@ -26,9 +27,10 @@ app.use("/", (req, res, next) => {
   }
 });
 
-app.use(express.static(__dirname));
+// app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use('/admin', (req, res, next) =>{
+app.use('/api/admin', (req, res, next) =>{
   const token = req.headers.authorization
   if (token) {
     jwt.verify(token, 'jwt', (err, decode)=> {
@@ -44,7 +46,7 @@ app.use('/admin', (req, res, next) =>{
   }
 })
 
-app.use('/', jsonParser, require('./routers/apiRouter'));
+app.use('/api/', jsonParser, require('./routers/apiRouter'));
 
 const server = app.listen(config.port, config.host, () => {  
     const host = server.address().address;  
