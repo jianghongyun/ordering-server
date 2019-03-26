@@ -30,7 +30,7 @@ app.use("/", (req, res, next) => {
 // app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use('/api/admin', (req, res, next) =>{
+app.use('/admin', (req, res, next) =>{
   const token = req.headers.authorization
   if (token) {
     jwt.verify(token, 'jwt', (err, decode)=> {
@@ -46,7 +46,7 @@ app.use('/api/admin', (req, res, next) =>{
   }
 })
 
-app.use('/api/', jsonParser, require('./routers/apiRouter'));
+app.use('/', jsonParser, require('./routers/apiRouter'));
 
 const server = app.listen(config.port, config.host, () => {  
     const host = server.address().address;  

@@ -11,6 +11,9 @@ const tableController = require('../controllers/tableController')
 const weChatController = require('../controllers/weChatController')
 const orderController =  require('../controllers/orderController')
 
+/**
+ * 用户登陆
+ */
 router.post('/user/login', userController.login);
 
 /**
