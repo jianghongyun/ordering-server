@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+.navBar {
+  width: 230px;
+  height: 100vh;
+  overflow-y: auto;
+  background: #545c64;
+  float: left;
+}
+
+.header {
+  width: calc(100vw - 230px);
+  height: 60px;
+  background: #545c64;
+  float: left;
+  color: #ffffff;
+  line-height: 60px;
+  font-size: 20px;
+}
+
+.content {
+  float: left;
+  width: calc(100vw - 230px);
+  height: calc(100vh - 60px);
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.navTitle {
+  color: #ffffff;
+  font-size: 22px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.loginbg {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/static/images/bg.jpg');
+  background-size: 100% 100%;
+}
+
+.loginForm {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -200px;
+  box-shadow: 2px 2px 2px #eee;
+  background: #ffffff;
+  padding: 70px 20px;
+  box-sizing: border-box;
+}
+
+.loginTitle {
+  height: 60px;
+  font-size: 20px;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
+.orderBox {
+  margin: 20px 0;
+}
+
+.orderBox .item {
+   height: 40px;
+   line-height: 40px;
+   color: #666;
+}
+
+.orderBox .item label {
+  width: 80px;
+  color: #333;
+  display: inline-block;
+}
