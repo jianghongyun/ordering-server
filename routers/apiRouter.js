@@ -10,11 +10,13 @@ const menuController = require('../controllers/menuController')
 const tableController = require('../controllers/tableController')
 const weChatController = require('../controllers/weChatController')
 const orderController =  require('../controllers/orderController')
+const smsController = require('../controllers/smsController')
 
 /**
  * 用户登陆
  */
 router.post('/user/login', userController.login);
+router.get('/user/sms', smsController.getCode);
 
 /**
  * 后台接口

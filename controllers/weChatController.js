@@ -30,14 +30,16 @@ exports.getOpenId = (req, res, next) => {
           openid: openid
         },
         defaults: customData
-      }).then(success=>{
+      })
+      .then(success=>{
         responseData = {
           openid: openid,
           code: 0,
           msg: '获取成功'
         }
         res.json(responseData);
-      }).error(err => {
+      })
+      .error(err => {
         responseData = {
           code: 1,
           msg: '操作失败'
