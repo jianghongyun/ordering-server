@@ -1,6 +1,6 @@
 /**
  * created by jianghy on 2019/03
- * 用户操作
+ * 订单操作
  */
 const sequelize = require('sequelize');
 const dbconn = require('../db/db');

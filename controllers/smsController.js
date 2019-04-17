@@ -1,5 +1,6 @@
 /**
- * -----------------------------短信验证-------------------------------------
+ * created by jianghy on 2019/03
+ * 短信操作
  */
 var https = require('https');
 const request = require("request")

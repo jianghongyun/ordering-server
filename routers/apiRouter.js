@@ -11,6 +11,7 @@ const tableController = require('../controllers/tableController')
 const weChatController = require('../controllers/weChatController')
 const orderController =  require('../controllers/orderController')
 const smsController = require('../controllers/smsController')
+const financeController = require('../controllers/financeController')
 
 /**
  * 用户登陆
@@ -21,22 +22,30 @@ router.get('/user/sms', smsController.getCode);
 /**
  * 后台接口
  */
+// 1.菜单分类
 router.post('/admin/menuClass/add', menuClassController.addMenuClass);
 router.get('/admin/menuClass/list', menuClassController.menuClassList);
 router.get('/admin/menuClass/alllist', menuClassController.menuClassAllList);
 router.put('/admin/menuClass/update', menuClassController.updateMenuClass);
 router.get('/admin/menuClass/delete', menuClassController.deleteMenuClass);
 
+// 2.菜品名单
 router.post('/admin/menu/add', menuController.addMenu);
 router.get('/admin/menu/list', menuController.menuList);
 router.put('/admin/menu/update', menuController.updateMenu);
 router.get('/admin/menu/delete', menuController.deleteMenu);
 router.post('/admin/menu/uploadImg', menuController.uploadImg);
 
+// 3.订单
 router.get('/admin/order/list', orderController.orderList);
 router.get('/admin/order/detail', orderController.orderDetail);
 router.get('/admin/order/delete', orderController.deleteOrder);
 router.get('/admin/order/update', orderController.updateOrder);
+
+// 4.财务
+router.get('/admin/finance/grossIncome', financeController.grossIncome)
+router.get('/admin/finance/monthlyIncome', financeController.monthlyIncome)
+router.get('/admin/finance/yearlyIncome', financeController.yearlyIncome)
 
 // router.post('/admin/table/add', tableController.addTable);
 // router.get('/admin/table/list', tableController.tableList);

@@ -1,6 +1,6 @@
 /**
- * created by jianghy on 2019/02
- * 用户操作
+ * created by jianghy on 2019/03
+ * 小程序
  */
 const custom = require('../models/customModel');
 const request = require("request")

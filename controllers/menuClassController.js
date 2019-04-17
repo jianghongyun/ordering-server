@@ -1,6 +1,6 @@
 /**
  * created by jianghy on 2019/02
- * 用户操作
+ * 菜单分类操作
  */
 const menuClass = require('../models/menuClassModel');
 let responseData
