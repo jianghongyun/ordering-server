@@ -7,50 +7,6 @@ const sequelize = require('sequelize')
 let responseData = {}
 
 /**
- * 当前年/月/日总收入
- * @param {*} dateformat 日期格式
- * @param {*} renameCol 命名年/月/日字段名称
- * @param {*} IncomeName 命名总收入名称
- * @param {*} currentDate 当前年/月/日
- */
-function getIncome(dateformat, renameCol, IncomeName, currentDate) {
-  return new Promise((resolve,reject) => {
-    order.findAll({
-      attributes:[
-      [sequelize.fn('date_format', sequelize.col('createdAt'),dateformat), renameCol],
-      [sequelize.fn('SUM', sequelize.col('price')), IncomeName],
-    ],
-    group: renameCol
-    }).then(success => {
-      success.map((obj,index,arr) => {
-        if(obj.dataValues[renameCol] == currentDate) {
-          resolve(obj)
-        }
-      })
-    })
-  })
-}
-
-/**
- * 年月汇总
- * @param {*} dateformat 日期格式
- * @param {*} currentDate 当前年月
- */
-function getGroupIncome(dateformat,currentDate){
-  return new Promise((resolve,reject) => {
-    order.findAll({
-      attributes:[
-      [sequelize.fn('date_format', sequelize.col('createdAt'),dateformat), 'date'],
-      [sequelize.fn('SUM', sequelize.col('price')), 'income'],
-    ],
-    group: 'date'
-    }).then(success => {
-      resolve(success)
-    })
-  })
-}
-
-/**
  * 当前年月日总收入
  * @param {*} req 
  * @param {*} res 
@@ -67,12 +23,12 @@ exports.grossIncome = (req,res,next) => {
   Promise.all([yearPromise,monthPromise,dayPromise])
   .then(success => {
     let grossIncome = {
-      yearly: success[0].dataValues.yearly,
-      yearlyIncome: success[0].dataValues.yearlyIncome,
-      monthly: success[1].dataValues.monthly,
-      monthlyIncome: success[1].dataValues.monthlyIncome,
-      daily: success[2].dataValues.daily,
-      dailyIncome: success[2].dataValues.dailyIncome
+      yearly: success[0].yearly,
+      yearlyIncome: success[0].yearlyIncome,
+      monthly: success[1].monthly,
+      monthlyIncome: success[1].monthlyIncome,
+      daily: success[2].daily,
+      dailyIncome: success[2].dailyIncome
     }    
     responseData = {
       code: 0,
@@ -161,6 +117,36 @@ exports.yearlyIncome = (req,res,next) => {
     }
     res.json(responseData)
     console.log(err)
+  })
+}
+
+/**
+ * 当前年/月/日总收入
+ * @param {*} dateformat 日期格式
+ * @param {*} renameCol 命名年/月/日字段名称
+ * @param {*} IncomeName 命名总收入名称
+ * @param {*} currentDate 当前年/月/日
+ */
+function getIncome(dateformat, renameCol, IncomeName, currentDate) {
+  
+  return new Promise((resolve,reject) => {
+    order.findAll({
+      attributes:[
+      [sequelize.fn('date_format', sequelize.col('createdAt'),dateformat), renameCol],
+      [sequelize.fn('SUM', sequelize.col('price')), IncomeName],
+    ],
+    group: renameCol
+    }).then(success => {
+      let data = {}
+      data[renameCol] = currentDate
+      data[IncomeName] = 0
+      success.map((obj,index,arr) => {
+        if(obj.dataValues[renameCol] == currentDate) {
+          data[IncomeName] = obj.dataValues[IncomeName]
+        } 
+        resolve(data)        
+      })
+    })
   })
 }
 
